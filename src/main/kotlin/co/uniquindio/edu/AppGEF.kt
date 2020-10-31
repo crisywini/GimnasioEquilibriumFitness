@@ -1,5 +1,6 @@
 package co.uniquindio.edu
 
+import co.uniquindio.edu.business.AdminEJB
 import co.uniquindio.edu.controller.InitViewController
 import co.uniquindio.edu.databaseConnection.DatabaseUtil
 import javafx.application.Application
@@ -10,6 +11,7 @@ import javafx.stage.Stage
 
 class AppGEF():Application() {
     override fun start(primaryStage: Stage?) {
+        /*
         val databaseUtil:DatabaseUtil = DatabaseUtil()
         databaseUtil.initDatabaseAndTables()
         val loader = FXMLLoader(AppGEF::class.java.getResource("/InitView.fxml"))
@@ -20,7 +22,12 @@ class AppGEF():Application() {
         //Operador para variables que pueden ser nulas
         primaryStage?.scene = scene
         primaryStage?.title = "Gimnasio Equilibrium Fitness"
-        primaryStage?.show()
+        primaryStage?.show()*/
+        val admin:AdminEJB = AdminEJB()
+        //admin.addSecretary("100","patri","sango","hj@asd","456", "456")
+        //admin.addTrainer("100","patri","sango","hj@asd","456", "456")
+        admin.addMember("1233","54","654", "456", "45600")
+        System.exit(0)
     }
     companion object{
 

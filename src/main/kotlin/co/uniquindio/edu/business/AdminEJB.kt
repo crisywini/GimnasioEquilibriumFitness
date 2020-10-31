@@ -1,12 +1,32 @@
 package co.uniquindio.edu.business
 
+import co.uniquindio.edu.databaseConnection.Connection
 import co.uniquindio.edu.model.*
 import java.sql.Date
+import java.sql.PreparedStatement
+import java.sql.SQLException
 
 class AdminEJB : AdminEJBRemote{
 
+    var connection:Connection? = Connection()
+
     override fun addSecretary(code: String, name: String, lastName: String, email: String, telephone: String, password: String) {
-        TODO("Not yet implemented")
+        connection?.getConnectionToDatabase()
+        val sql = "INSERT INTO Secretary(code, password, name, last_name, phone_number, email) VALUES(?,?,?,?,?, ?);"
+        try{
+            var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
+            statement?.setString(1,code)
+            statement?.setString(2,password)
+            statement?.setString(3,name)
+            statement?.setString(4,lastName)
+            statement?.setString(5,telephone)
+            statement?.setString(6,email)
+            val result = statement?.executeUpdate()
+            println("rows modified: ${result}")
+        }catch (e:SQLException){
+            e.printStackTrace()
+        }
+
     }
 
     override fun updateSecretary(code: String, name: String, lastName: String, email: String, telephone: String, password: String) {
@@ -22,7 +42,21 @@ class AdminEJB : AdminEJBRemote{
     }
 
     override fun addTrainer(code: String, name: String, lastName: String, email: String, telephone: String, password: String) {
-        TODO("Not yet implemented")
+        connection?.getConnectionToDatabase()
+        val sql = "INSERT INTO Trainer(code, name, password, last_name, phone_number, email) VALUES(?,?,?,?,?, ?);"
+        try{
+            var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
+            statement?.setString(1,code)
+            statement?.setString(2,name)
+            statement?.setString(3,password)
+            statement?.setString(4,lastName)
+            statement?.setString(5,telephone)
+            statement?.setString(6,email)
+            val result = statement?.executeUpdate()
+            println("rows modified: ${result}")
+        }catch (e:SQLException){
+            e.printStackTrace()
+        }
     }
 
     override fun updateTrainer(code: String, name: String, lastName: String, email: String, telephone: String, password: String) {
@@ -38,7 +72,20 @@ class AdminEJB : AdminEJBRemote{
     }
 
     override fun addMember(code: String, name: String, lastName: String, phoneNumber: String, email: String) {
-        TODO("Not yet implemented")
+        connection?.getConnectionToDatabase()
+        val sql = "INSERT INTO Member(code, name, last_name, phone_number, email) VALUES(?,?,?,?,?);"
+        try{
+            var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
+            statement?.setString(1,code)
+            statement?.setString(2,name)
+            statement?.setString(3,lastName)
+            statement?.setString(4,phoneNumber)
+            statement?.setString(5,email)
+            val result = statement?.executeUpdate()
+            println("rows modified: ${result}")
+        }catch (e:SQLException){
+            e.printStackTrace()
+        }
     }
 
     override fun removeMember(code: String) {
@@ -54,7 +101,7 @@ class AdminEJB : AdminEJBRemote{
     }
 
     override fun addMembership(code: Int, member: Member, physicalAssessment: PhysicalAssessment, scholarship: Scholarship) {
-        TODO("Not yet implemented")
+
     }
 
     override fun removeMembership(code: Int) {
