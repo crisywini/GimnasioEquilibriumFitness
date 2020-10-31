@@ -13,14 +13,14 @@ class Connection {
     val URL_DATABASE = "jdbc:mysql://localhost:3306/GEF_TEST?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=CTT"
     val controller:String = "com.mysql.cj.jdbc.Driver"
 
-
+    /**
     companion object{
         @JvmStatic
         fun main(args:Array<String>){
            val databaseUtil:DatabaseUtil = DatabaseUtil()
             databaseUtil.initDatabaseAndTables()
         }
-    }
+    }**/
 
     /**
      * This method allows to connect to the mysql
