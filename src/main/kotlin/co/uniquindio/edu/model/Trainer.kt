@@ -1,6 +1,6 @@
 package co.uniquindio.edu.model
 
-class Trainer(code:String, name:String, lastName: String, email:String, telephone:String) : Employee(code, name,lastName, email, telephone) {
+class Trainer(code:String, name:String, lastName: String, email:String, telephone:String, password:String) : Employee(code, name,lastName, email, telephone, password) {
 
     var physicalAssessments:ArrayList<PhysicalAssessment> = ArrayList()
 

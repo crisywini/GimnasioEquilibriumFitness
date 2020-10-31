@@ -1,13 +1,14 @@
 package co.uniquindio.edu.model
 
-open class Employee (var code: String, var name:String, var lastName: String, var email:String, var telephone:String, var password:String) {
+import java.sql.Date
 
+class Payment(var code:Int, var date:Date, var total:Double, var member:Member, var membership: Membership, var paymentType: PaymentType) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as Employee
+        other as Payment
 
         if (code != other.code) return false
 
@@ -15,11 +16,10 @@ open class Employee (var code: String, var name:String, var lastName: String, va
     }
 
     override fun hashCode(): Int {
-        return code.hashCode()
+        return code
     }
 
     override fun toString(): String {
-        return "Employee(code='$code', name='$name', lastName='$lastName', email='$email', telephone='$telephone')"
+        return "Payment(code=$code, date=$date, total=$total, member=$member, membership=$membership, paymentType=$paymentType)"
     }
-
 }
