@@ -1,6 +1,6 @@
 package co.uniquindio.edu.model
 
-class Scretary(code:String, name:String, lastName: String, email:String, telephone:String, password:String) : Employee(code, name,lastName, email, telephone, password) {
+class Secretary(code:String, name:String, lastName: String, email:String, telephone:String, password:String) : Employee(code, name,lastName, email, telephone, password) {
 
     var memberships:ArrayList<Membership> = ArrayList()
 
