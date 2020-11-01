@@ -1,5 +1,6 @@
 package co.uniquindio.edu.databaseConnection
 
+import java.sql.PreparedStatement
 import java.sql.SQLException
 import java.sql.Statement
 
@@ -76,6 +77,32 @@ class DatabaseUtil {
             }
         }
     }
+    fun initDefaultScholarship(description:String){
+        connection?.getConnectionToDatabase()
+        val sql = "INSERT INTO Scholarship( description ) VALUES(?);"
+        try{
+            var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
+            statement?.setString(1,description)
+
+            val result = statement?.executeUpdate()
+            println("rows modified: ${result}")
+        }catch (e:SQLException){
+            e.printStackTrace()
+        }
+    }
+    fun initDefaultPaymentType(description:String){
+        connection?.getConnectionToDatabase()
+        val sql = "INSERT INTO PaymentType( description ) VALUES(?);"
+        try{
+            var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
+            statement?.setString(1,description)
+
+            val result = statement?.executeUpdate()
+            println("rows modified: ${result}")
+        }catch (e:SQLException){
+            e.printStackTrace()
+        }
+    }
 
     /**
      * This method allows to init the database and all the tables
@@ -103,6 +130,12 @@ class DatabaseUtil {
                 "CONSTRAINT fk_code_membership FOREIGN KEY(code_membership) REFERENCES Membership(code) ON UPDATE CASCADE,"+
                 "CONSTRAINT fk_code_payment_type FOREIGN KEY(code_payment_type) REFERENCES PaymentType(code) ON UPDATE CASCADE"+
                 ");")
-
+        initDefaultScholarship("SCHOOL")
+        initDefaultScholarship("COLLAGE")
+        initDefaultScholarship("POST_GRADE")
+        initDefaultScholarship("NONE")
+        initDefaultPaymentType("CREDIT")
+        initDefaultPaymentType("DEBIT")
+        initDefaultPaymentType("NONE")
     }
 }

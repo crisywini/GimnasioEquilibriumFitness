@@ -4,7 +4,7 @@ import java.sql.Date
 
 class PhysicalAssessment(var code:Int, var date:Date,var arms:Double, var legs:Double, var hips:Double, var height:Double, var weight:Double, var personalGoals:String, var trainer: Trainer) {
 
-    constructor(){
+    constructor():this(0, Date.valueOf("2020-10-13"), 0.0, 0.0, 0.0, 0.0, 0.0, "", Trainer()){
 
     }
     override fun equals(other: Any?): Boolean {

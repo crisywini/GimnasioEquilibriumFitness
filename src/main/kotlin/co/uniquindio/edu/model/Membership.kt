@@ -1,8 +1,8 @@
 package co.uniquindio.edu.model
 
-class Membership(var code:Int, var member: Member, var physicalAssessment: PhysicalAssessment, var scholarship: Scholarship, var secretary: Secretary) {
+class Membership(var code:Int, var member: Member,  var secretary: Secretary, var physicalAssessment: PhysicalAssessment, var scholarship: Scholarship) {
 
-    constructor(){
+    constructor():this(0, Member(),  Secretary(), PhysicalAssessment(),Scholarship.SCHOOL){
 
     }
 

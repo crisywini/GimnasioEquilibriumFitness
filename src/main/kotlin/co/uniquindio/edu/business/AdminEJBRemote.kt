@@ -4,6 +4,7 @@ import co.uniquindio.edu.model.*
 import java.sql.Date
 
 interface AdminEJBRemote {
+    fun login(code:String, password: String):Employee
     fun addSecretary(code:String, name:String, lastName: String, email:String, telephone:String, password:String)
     fun updateSecretary(code:String, name:String, lastName: String, email:String, telephone:String, password:String)
     fun removeSecretary(code:String)
@@ -22,10 +23,9 @@ interface AdminEJBRemote {
     fun removeMembership(code:Int)
     fun getAllMemberships():ArrayList<Membership>
 
-    fun addPayment(code:Int, date: Date, total:Double, memberCode:String, membershipCode: Int, paymentTypeCode: Int)
+    fun addPayment(date: Date, total:Double, memberCode:String, membershipCode: Int, paymentTypeCode: Int)
 
-    fun addPhysicalAssesment(
-            code: Int,
+    fun addPhysicalAssessment(
             date: Date,
             arms: Double,
             legs: Double,
@@ -37,7 +37,7 @@ interface AdminEJBRemote {
     )
     fun updateDatePhysicalAssessment(code:Int, date:Date)
     fun removePhysicalAssessment(code:Int)
-    fun getAllPhysicalAssessment(code:Int)
+    fun getAllPhysicalAssessment(code:Int):ArrayList<PhysicalAssessment>
 
     fun getMemberByCode(code:String):Member
     fun getSecretaryByCode(code:String):Secretary
