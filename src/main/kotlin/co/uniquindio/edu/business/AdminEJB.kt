@@ -2,11 +2,13 @@ package co.uniquindio.edu.business
 
 import co.uniquindio.edu.databaseConnection.Connection
 import co.uniquindio.edu.exceptions.EntityNullException
+import co.uniquindio.edu.exceptions.EntityRepeatedException
 import co.uniquindio.edu.model.*
 import java.sql.Date
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
+import javax.swing.text.html.parser.Entity
 import kotlin.jvm.Throws
 
 class AdminEJB : AdminEJBRemote{
@@ -134,22 +136,28 @@ class AdminEJB : AdminEJBRemote{
         }
         return results
     }
-
+    @Throws(EntityRepeatedException::class)
     override fun addTrainer(code: String, name: String, lastName: String, email: String, telephone: String, password: String) {
         connection?.getConnectionToDatabase()
-        val sql = "INSERT INTO Trainer(code, name, password, last_name, phone_number, email) VALUES(?,?,?,?,?, ?);"
+
         try{
-            var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
-            statement?.setString(1,code)
-            statement?.setString(2,name)
-            statement?.setString(3,password)
-            statement?.setString(4,lastName)
-            statement?.setString(5,telephone)
-            statement?.setString(6,email)
-            val result = statement?.executeUpdate()
-            println("rows modified: ${result}")
-        }catch (e:SQLException){
-            e.printStackTrace()
+            getTrainerByCode(code)
+            throw EntityRepeatedException("El entrenador: $code ya se encuentra registrado")
+        }catch(e:EntityNullException) {
+            val sql = "INSERT INTO Trainer(code, name, password, last_name, phone_number, email) VALUES(?,?,?,?,?, ?);"
+            try {
+                var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
+                statement?.setString(1, code)
+                statement?.setString(2, name)
+                statement?.setString(3, password)
+                statement?.setString(4, lastName)
+                statement?.setString(5, telephone)
+                statement?.setString(6, email)
+                val result = statement?.executeUpdate()
+                println("rows modified: ${result}")
+            } catch (e: SQLException) {
+                e.printStackTrace()
+            }
         }
     }
 
@@ -198,20 +206,26 @@ class AdminEJB : AdminEJBRemote{
         return results
     }
 
+    @Throws(EntityRepeatedException::class)
     override fun addMember(code: String, name: String, lastName: String, phoneNumber: String, email: String) {
         connection?.getConnectionToDatabase()
-        val sql = "INSERT INTO Member(code, name, last_name, phone_number, email) VALUES(?,?,?,?,?);"
         try{
-            var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
-            statement?.setString(1,code)
-            statement?.setString(2,name)
-            statement?.setString(3,lastName)
-            statement?.setString(4,phoneNumber)
-            statement?.setString(5,email)
-            val result = statement?.executeUpdate()
-            println("rows modified: ${result}")
-        }catch (e:SQLException){
-            e.printStackTrace()
+            getMemberByCode(code)
+            throw EntityRepeatedException("El miembro: $code ya se encuentra registrado")
+        }catch (e:EntityNullException) {
+            val sql = "INSERT INTO Member(code, name, last_name, phone_number, email) VALUES(?,?,?,?,?);"
+            try {
+                var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
+                statement?.setString(1, code)
+                statement?.setString(2, name)
+                statement?.setString(3, lastName)
+                statement?.setString(4, phoneNumber)
+                statement?.setString(5, email)
+                val result = statement?.executeUpdate()
+                println("rows modified: ${result}")
+            } catch (e: SQLException) {
+                e.printStackTrace()
+            }
         }
     }
 
@@ -230,7 +244,7 @@ class AdminEJB : AdminEJBRemote{
     override fun getAllMembers(): ArrayList<Member> {
         connection?.getConnectionToDatabase()
         var results:ArrayList<Member> = ArrayList()
-        val sql = "SELECT * FROM Trainer;"
+        val sql = "SELECT * FROM Member;"
         try{
             var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
             val resultSet:ResultSet? = statement?.executeQuery()
@@ -247,15 +261,21 @@ class AdminEJB : AdminEJBRemote{
         return results
     }
 
+    @Throws(EntityNullException::class)
     override fun updateMember(code: String, name: String, lastName: String, phoneNumber: String, email: String) {
         connection?.getConnectionToDatabase()
-        val sql = "UPDATE Trainer SET name = \'$name\', last_name = \'$lastName\', phone_number = \'$phoneNumber\', email = \'$email\' WHERE code = \'$code\'; "
         try{
-            var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
-            val result = statement?.executeUpdate()
-            println("rows modified: ${result}")
-        }catch (e:SQLException){
-            e.printStackTrace()
+            getMemberByCode(code)
+            val sql = "UPDATE Member SET name = \'$name\', last_name = \'$lastName\', phone_number = \'$phoneNumber\', email = \'$email\' WHERE code = \'$code\'; "
+            try{
+                var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
+                val result = statement?.executeUpdate()
+                println("rows modified: ${result}")
+            }catch (e:SQLException){
+                e.printStackTrace()
+            }
+        }catch (e:EntityNullException){
+            throw EntityNullException(e.message.toString())
         }
     }
 
@@ -328,7 +348,6 @@ class AdminEJB : AdminEJBRemote{
         }catch (e:SQLException){
             e.printStackTrace()
         }
-
     }
 
     override fun addPhysicalAssessment(date: Date, arms: Double, legs: Double, hips: Double, height: Double, weight: Double, personalGoals: String, trainerCode: String) {
@@ -403,7 +422,7 @@ class AdminEJB : AdminEJBRemote{
         }
         return results
     }
-
+    @Throws(EntityNullException::class)
     override fun getMemberByCode(code: String): Member {
         connection?.getConnectionToDatabase()
         var member:Member = Member()
@@ -417,6 +436,9 @@ class AdminEJB : AdminEJBRemote{
             }
         }catch (e:SQLException){
             e.printStackTrace()
+        }
+        if(member.code.isNullOrEmpty()){
+            throw EntityNullException("El miembro: $code No se encuentra registrado")
         }
         return member
     }

@@ -1,0 +1,32 @@
+#VBox{
+      -fx-text-fill: white;
+}
+.label{
+    -fx-text-fill: white;
+
+}
+.text-field {
+    -fx-background-radius: 20px;
+    -fx-background-color: #b62525;
+    -fx-text-fill: white;
+}
+.table-view{
+    -fx-background-radius: 20px;
+    -fx-background-color: #b62525;
+    -fx-text-fill: white;
+}
+.table-view .column-header{
+
+    -fx-background-color: #b62525;
+    -fx-text-fill: white;
+}
+.button{
+    -fx-background-radius: 20px;
+    -fx-background-color: #b62525;
+    -fx-text-fill: white;
+}
+.button:selected{
+    -fx-background-radius: 20px;
+    -fx-background-color: #c80101;
+    -fx-text-fill: white;
+}

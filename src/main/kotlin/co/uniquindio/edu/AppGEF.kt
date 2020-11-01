@@ -12,11 +12,11 @@ import java.sql.Date
 
 class AppGEF():Application() {
     override fun start(primaryStage: Stage?) {
-        val databaseUtil:DatabaseUtil = DatabaseUtil()
-        databaseUtil.initDatabaseAndTables()
+
         val loader = FXMLLoader(AppGEF::class.java.getResource("/InitView.fxml"))
         val parent:Parent = loader.load()
         val controller:InitViewController= loader.getController()
+        controller.logginViewController.initViewController = controller
         //controller.showInitView()
         val scene = Scene(parent)
         //Operador para variables que pueden ser nulas
