@@ -35,8 +35,10 @@ class InitViewController {
             controller.secretary = secretary
             controller.membersViewController.initTableView()
             controller.membershipsViewController.secretary = secretary
-            controller.membershipsViewController.fillTableView()
+            controller.membershipsViewController.initTableView()
             controller.membershipsViewController.initScholarshipComboBox()
+            controller.paymentViewController.initComboBox()
+            controller.paymentViewController.initTableView()
 
             rootPane.center=parent
         }catch (e:Exception){

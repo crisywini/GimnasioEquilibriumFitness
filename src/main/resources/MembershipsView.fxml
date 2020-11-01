@@ -15,20 +15,20 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" alignment="CENTER">
-                <Label text="Miembro"/>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                <Label text="Miembro" />
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1" alignment="CENTER" >
-                <Label text="Escolaridad"/>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                <Label text="Escolaridad" />
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <TextField fx:id="memberCodeField" promptText="Cédula" prefHeight="26.0" prefWidth="262.0"/>
+                  <TextField fx:id="memberCodeField" prefHeight="26.0" prefWidth="262.0" promptText="Cédula" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <ComboBox fx:id="scholarshipComboBox" promptText="Elige la escolaridad" prefHeight="26.0" prefWidth="262.0"/>
+                  <ComboBox fx:id="scholarshipComboBox" prefHeight="26.0" prefWidth="262.0" promptText="Elige la escolaridad" />
                </children>
             </HBox>
          </children>
@@ -38,7 +38,6 @@
             <children>
                 <Button mnemonicParsing="false" onAction="#handleAddButton" text="Agregar" />
                 <Button mnemonicParsing="false" onAction="#handleSearchButton" text="Buscar" />
-                <Button mnemonicParsing="false" onAction="#handleUpdateButton" text="Actualizar" />
                 <Button mnemonicParsing="false" onAction="#handleCleanButton" text="Limpiar" />
 
             </children></HBox>

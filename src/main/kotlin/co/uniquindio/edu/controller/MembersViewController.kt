@@ -35,6 +35,11 @@ class MembersViewController {
                 adminEJB.addMember(codeMemberField.text, nameMemberField.text, lastNameMemberField.text, telephoneField.text, emailMemberField.text)
                 fillTableView()
                 InitViewController.showAlert("Miembro agregado con éxito","INFORMACIÓN","",Alert.AlertType.INFORMATION)
+                codeMemberField.text = ""
+                nameMemberField.text = ""
+                lastNameMemberField.text = ""
+                telephoneField.text = ""
+                emailMemberField.text = ""
             }catch (e:EntityRepeatedException){
                 InitViewController.showAlert(e.message.toString(),"ERROR","",Alert.AlertType.ERROR)
             }
@@ -48,6 +53,11 @@ class MembersViewController {
             try {
                 memberTableView.items.setAll(adminEJB.getMemberByCode(codeMemberField.text))
                 memberTableView.refresh()
+                codeMemberField.text = ""
+                nameMemberField.text = ""
+                lastNameMemberField.text = ""
+                telephoneField.text = ""
+                emailMemberField.text = ""
             }catch (e:EntityNullException){
                 InitViewController.showAlert(e.message.toString(),"ERROR","",Alert.AlertType.ERROR)
             }
@@ -62,6 +72,11 @@ class MembersViewController {
                 adminEJB.updateMember(codeMemberField.text,nameMemberField.text,lastNameMemberField.text,telephoneField.text,emailMemberField.text)
                 InitViewController.showAlert("Miembro: ${codeMemberField.text} actualizado","ADVERTENCIA","",Alert.AlertType.WARNING)
                 fillTableView()
+                codeMemberField.text = ""
+                nameMemberField.text = ""
+                lastNameMemberField.text = ""
+                telephoneField.text = ""
+                emailMemberField.text = ""
            }catch(e:EntityNullException){
                 InitViewController.showAlert(e.message.toString(),"ERROR","",Alert.AlertType.ERROR)
             }

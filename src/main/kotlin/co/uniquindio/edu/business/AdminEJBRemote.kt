@@ -47,4 +47,8 @@ interface AdminEJBRemote {
     fun getMembershipByCode(code:Int):Membership
     fun getPaymenTypeByCode(code:Int):PaymentType
     fun getTrainerByCode(code:String):Trainer
+
+    fun getMembershipsByMemberCode(memberCode:String):ArrayList<Membership>
+    fun getAllPayments():ArrayList<Payment>
+    fun getPaymentsByMemberCode(memberCode: String):ArrayList<Payment>
 }

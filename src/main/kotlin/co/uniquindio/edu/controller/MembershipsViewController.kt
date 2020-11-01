@@ -6,10 +6,7 @@ import co.uniquindio.edu.model.Secretary
 import co.uniquindio.edu.view.MembershipObservable
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
-import javafx.scene.control.ComboBox
-import javafx.scene.control.TableColumn
-import javafx.scene.control.TableView
-import javafx.scene.control.TextField
+import javafx.scene.control.*
 import javafx.scene.control.cell.PropertyValueFactory
 
 
@@ -29,19 +26,44 @@ class MembershipsViewController {
 
     @FXML
     fun handleAddButton(e:ActionEvent){
-
+        if(isInputValid()){
+            adminEJB.addMembership(memberCodeField.text, scholarshipComboBox.selectionModel.selectedIndex+1, secretary.code)
+            fillTableView()
+            InitViewController.showAlert("Membresía creada con éxito","INFORMACIÓN","",Alert.AlertType.INFORMATION)
+            memberCodeField.text = ""
+            scholarshipComboBox.selectionModel.clearSelection()
+        }
     }
     @FXML
     fun handleSearchButton(e:ActionEvent){
-
+        fillTableViewByMemberCode()
+        memberCodeField.text = ""
+        scholarshipComboBox.selectionModel.clearSelection()
     }
-    @FXML
-    fun handleUpdateButton(e:ActionEvent){
 
-    }
     @FXML
     fun handleCleanButton(e:ActionEvent){
+        fillTableView()
+        memberCodeField.text = ""
+        scholarshipComboBox.selectionModel.clearSelection()
+    }
 
+    fun isInputValid():Boolean {
+        var errorMessage = ""
+        var result = false
+
+        if(memberCodeField.text.isNullOrEmpty()){
+            errorMessage += "Debes ingresar el código del miembro\n"
+        }
+        if(scholarshipComboBox.selectionModel.isEmpty){
+            errorMessage += "Debes seleccionar una escolaridad\n"
+        }
+        if(errorMessage.isNullOrEmpty()){
+            result = true
+        }else{
+            InitViewController.showAlert(errorMessage, "ADVERTENCIA","",Alert.AlertType.WARNING)
+        }
+        return result
     }
     fun initScholarshipComboBox(){
         scholarshipComboBox.items.clear()
@@ -62,6 +84,14 @@ class MembershipsViewController {
     fun fillTableView(){
         membershipTableView.items.clear()
         var memberships = adminEJB.getAllMemberships()
+        for(element in memberships){
+            membershipTableView.items.add(MembershipObservable(element.code,element.member.code,element.secretary.name,element.scholarship.name))
+        }
+        membershipTableView.refresh()
+    }
+    fun fillTableViewByMemberCode(){
+        membershipTableView.items.clear()
+        var memberships = adminEJB.getMembershipsByMemberCode(memberCodeField.text)
         for(element in memberships){
             membershipTableView.items.add(MembershipObservable(element.code,element.secretary.name,element.member.code,element.scholarship.name))
         }
