@@ -11,6 +11,7 @@ import javafx.stage.Stage
 
 class AppGEF():Application() {
     override fun start(primaryStage: Stage?) {
+
         /*
         val databaseUtil:DatabaseUtil = DatabaseUtil()
         databaseUtil.initDatabaseAndTables()
@@ -23,10 +24,16 @@ class AppGEF():Application() {
         primaryStage?.scene = scene
         primaryStage?.title = "Gimnasio Equilibrium Fitness"
         primaryStage?.show()*/
-        val admin:AdminEJB = AdminEJB()
+        //val admin:AdminEJB = AdminEJB()
         //admin.addSecretary("100","patri","sango","hj@asd","456", "456")
         //admin.addTrainer("100","patri","sango","hj@asd","456", "456")
-        admin.addMember("1233","54","654", "456", "45600")
+        //admin.addMember("1233","54","654", "456", "45600")
+        //admin.updateSecretary("100", "latrice", "royale", "latriceRoyale@hotmail.com", "123456", "456")
+        //admin.updateTrainer("100","manila","luzon","manilalluzon@mail.com","45679","456")
+        //admin.removeTrainer("100")
+        //println(admin.getAllTrainers())
+
+
         System.exit(0)
     }
     companion object{

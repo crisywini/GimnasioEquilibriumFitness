@@ -89,9 +89,8 @@ class DatabaseUtil {
         createTable("CREATE TABLE IF NOT EXISTS PhysicalAssessment(code int NOT NULL AUTO_INCREMENT, date DATE NOT NULL, arms DECIMAL NOT NULL, legs DECIMAL NOT NULL, hips DECIMAL NOT NULL, height DECIMAL NOT NULL, weight DECIMAL NOT NULL, personal_goals LONGTEXT NOT NULL, code_trainer VARCHAR(11) NOT NULL, PRIMARY KEY(code), CONSTRAINT fk_code_trainer FOREIGN KEY(code_trainer) REFERENCES Trainer(code) ON UPDATE CASCADE);")
 
         createTable("CREATE TABLE IF NOT EXISTS Membership(code int NOT NULL AUTO_INCREMENT, code_member VARCHAR(11) NOT NULL," +
-                "code_trainer VARCHAR(11) NOT NULL, code_secretary VARCHAR(11) NOT NULL, code_physical_assessment int NOT NULL, " +
+                " code_secretary VARCHAR(11) NOT NULL, code_physical_assessment int NOT NULL, " +
                 "code_scholarship int NOT NULL, PRIMARY KEY(code), " +
-                "CONSTRAINT fk_code_trainer_member FOREIGN KEY(code_trainer) REFERENCES Trainer(code) ON UPDATE CASCADE," +
                 "CONSTRAINT fk_code_secretary FOREIGN KEY(code_secretary) REFERENCES Secretary(code) ON UPDATE CASCADE,"+
                 "CONSTRAINT fk_code_member FOREIGN KEY(code_member) REFERENCES Member(code) ON UPDATE CASCADE, "+
                 "CONSTRAINT fk_code_physical_assessment FOREIGN KEY(code_physical_assessment) REFERENCES PhysicalAssessment(code) ON UPDATE CASCADE, "+

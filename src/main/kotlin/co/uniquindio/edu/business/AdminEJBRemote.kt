@@ -18,11 +18,11 @@ interface AdminEJBRemote {
     fun getAllMembers():ArrayList<Member>
     fun updateMember(code:String, name:String, lastName:String, phoneNumber:String, email:String)
 
-    fun addMembership(code:Int, member: Member, physicalAssessment: PhysicalAssessment, scholarship: Scholarship)
+    fun addMembership(memberCode: String, physicalAssessmentCode:Int, scholarshipCode: Int, secretaryCode: String)
     fun removeMembership(code:Int)
-    fun getAllMemberships():ArrayList<Member>
+    fun getAllMemberships():ArrayList<Membership>
 
-    fun addPayment(code:Int, date: Date, total:Double, member:Member, membership: Membership, paymentType: PaymentType)
+    fun addPayment(code:Int, date: Date, total:Double, memberCode:String, membershipCode: Int, paymentTypeCode: Int)
 
     fun addPhysicalAssesment(
             code: Int,
@@ -33,10 +33,17 @@ interface AdminEJBRemote {
             height: Double,
             weight: Double,
             personalGoals: String,
-            trainer: Trainer
+            trainerCode: String
     )
-    fun updateDatePyhisicalAssesment(code:Int, date:Date)
-    fun removePhysicalAssesment(code:Int)
-    fun getAllPhysicalAssesment(code:Int)
+    fun updateDatePhysicalAssessment(code:Int, date:Date)
+    fun removePhysicalAssessment(code:Int)
+    fun getAllPhysicalAssessment(code:Int)
 
+    fun getMemberByCode(code:String):Member
+    fun getSecretaryByCode(code:String):Secretary
+    fun getPhysicallAssesement(code:Int):PhysicalAssessment
+    fun getScholarshipByCode(code:Int):Scholarship
+    fun getMembershipByCode(code:Int):Membership
+    fun getPaymenTypeByCode(code:Int):PaymentType
+    fun getTrainerByCode(code:String):Trainer
 }

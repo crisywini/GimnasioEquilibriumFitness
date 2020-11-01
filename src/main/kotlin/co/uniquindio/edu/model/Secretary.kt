@@ -4,7 +4,9 @@ class Secretary(code:String, name:String, lastName: String, email:String, teleph
 
     var memberships:ArrayList<Membership> = ArrayList()
 
+    constructor(){
 
+    }
     override fun equals(other: Any?): Boolean {
         return super.equals(other)
     }

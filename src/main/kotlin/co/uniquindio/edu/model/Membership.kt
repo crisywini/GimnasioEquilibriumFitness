@@ -1,6 +1,10 @@
 package co.uniquindio.edu.model
 
-class Membership(var code:Int, var member: Member, var physicalAssessment: PhysicalAssessment, var scholarship: Scholarship) {
+class Membership(var code:Int, var member: Member, var physicalAssessment: PhysicalAssessment, var scholarship: Scholarship, var secretary: Secretary) {
+
+    constructor(){
+
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
