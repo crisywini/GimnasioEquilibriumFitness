@@ -279,16 +279,15 @@ class AdminEJB : AdminEJBRemote{
         }
     }
 
-    override fun addMembership(memberCode: String, physicalAssessmentCode:Int, scholarshipCode: Int, secretaryCode: String) {
+    override fun addMembership(memberCode: String, scholarshipCode: Int, secretaryCode: String) {
         connection?.getConnectionToDatabase()
-        val sql = "INSERT INTO Membership(code_member, code_secretary, code_physical_assessment, code_scholarship ) " +
+        val sql = "INSERT INTO Membership(code_member, code_secretary, code_scholarship ) " +
                 "VALUES(?,?,?,?);"
         try{
             var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
             statement?.setString(1, memberCode)
             statement?.setString(2, secretaryCode)
-            statement?.setInt(3, physicalAssessmentCode)
-            statement?.setInt(4, scholarshipCode)
+            statement?.setInt(3, scholarshipCode)
 
             val result = statement?.executeUpdate()
 
@@ -321,8 +320,7 @@ class AdminEJB : AdminEJBRemote{
                 results.add(Membership(resultSet?.getInt(1),
                 getMemberByCode(resultSet?.getString(2)),
                 getSecretaryByCode(resultSet?.getString(3)),
-                getPhysicallAssesement(resultSet?.getInt(4)),
-                getScholarshipByCode(resultSet?.getInt(5))))
+                getScholarshipByCode(resultSet?.getInt(4))))
             }
         }catch (e:SQLException){
             e.printStackTrace()
@@ -350,10 +348,10 @@ class AdminEJB : AdminEJBRemote{
         }
     }
 
-    override fun addPhysicalAssessment(date: Date, arms: Double, legs: Double, hips: Double, height: Double, weight: Double, personalGoals: String, trainerCode: String) {
+    override fun addPhysicalAssessment(date: Date, arms: Double, legs: Double, hips: Double, height: Double, weight: Double, personalGoals: String, trainerCode: String, membershipCode: Int) {
         connection?.getConnectionToDatabase()
-        val sql = "INSERT INTO PhysicalAssessment(date, arms, legs, hips, height, weight, personal_goals, code_trainer) " +
-                "VALUES(?,?,?,?,?,?,?,?);"
+        val sql = "INSERT INTO PhysicalAssessment(date, arms, legs, hips, height, weight, personal_goals, code_trainer, code_membership) " +
+                "VALUES(?,?,?,?,?,?,?,?,?);"
         try{
             var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
             statement?.setDate(1, date)
@@ -364,6 +362,7 @@ class AdminEJB : AdminEJBRemote{
             statement?.setDouble(6, weight)
             statement?.setString(7, personalGoals)
             statement?.setString(8, trainerCode)
+            statement?.setInt(9,membershipCode)
 
             val result = statement?.executeUpdate()
 
@@ -415,7 +414,8 @@ class AdminEJB : AdminEJBRemote{
                         resultSet?.getDouble(6),
                         resultSet?.getDouble(7),
                         resultSet?.getString(8),
-                        getTrainerByCode(resultSet?.getString(9))))
+                        getTrainerByCode(resultSet?.getString(9)),
+                        getMembershipByCode(resultSet.getInt(10))))
             }
         }catch (e:SQLException){
             e.printStackTrace()
@@ -482,7 +482,8 @@ class AdminEJB : AdminEJBRemote{
                         resultSet?.getDouble(6),
                         resultSet?.getDouble(7),
                         resultSet?.getString(8),
-                        getTrainerByCode(resultSet?.getString(9))
+                        getTrainerByCode(resultSet?.getString(9)),
+                        getMembershipByCode(resultSet?.getInt(10))
                 )
             }
         }catch (e:SQLException){
@@ -530,8 +531,7 @@ class AdminEJB : AdminEJBRemote{
                 membership = Membership(resultSet?.getInt(1),
                                         getMemberByCode(resultSet?.getString(2)),
                                         getSecretaryByCode(resultSet?.getString(3)),
-                                        getPhysicallAssesement(resultSet?.getInt(4)),
-                                        getScholarshipByCode(resultSet?.getInt(5)))
+                                        getScholarshipByCode(resultSet?.getInt(4)))
 
             }
         }catch (e:SQLException){

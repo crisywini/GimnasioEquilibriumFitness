@@ -34,6 +34,9 @@ class InitViewController {
             val controller: SecretaryViewController = loader.getController()
             controller.secretary = secretary
             controller.membersViewController.initTableView()
+            controller.membershipsViewController.secretary = secretary
+            controller.membershipsViewController.fillTableView()
+            controller.membershipsViewController.initScholarshipComboBox()
 
             rootPane.center=parent
         }catch (e:Exception){

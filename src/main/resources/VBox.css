@@ -30,3 +30,12 @@
     -fx-background-color: #c80101;
     -fx-text-fill: white;
 }
+.combo-box{
+    -fx-background-radius: 20px;
+    -fx-background-color: #b62525;
+    -fx-text-fill: white;
+}
+.combo-box .list-cell{
+    -fx-text-fill: white;
+    -fx-background-color: #b62525;
+}

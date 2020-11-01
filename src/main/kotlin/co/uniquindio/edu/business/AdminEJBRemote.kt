@@ -19,7 +19,7 @@ interface AdminEJBRemote {
     fun getAllMembers():ArrayList<Member>
     fun updateMember(code:String, name:String, lastName:String, phoneNumber:String, email:String)
 
-    fun addMembership(memberCode: String, physicalAssessmentCode:Int, scholarshipCode: Int, secretaryCode: String)
+    fun addMembership(memberCode: String,scholarshipCode: Int, secretaryCode: String)
     fun removeMembership(code:Int)
     fun getAllMemberships():ArrayList<Membership>
 
@@ -33,7 +33,8 @@ interface AdminEJBRemote {
             height: Double,
             weight: Double,
             personalGoals: String,
-            trainerCode: String
+            trainerCode: String,
+            membershipCode: Int
     )
     fun updateDatePhysicalAssessment(code:Int, date:Date)
     fun removePhysicalAssessment(code:Int)

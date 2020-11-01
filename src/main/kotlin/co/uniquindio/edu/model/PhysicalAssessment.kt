@@ -2,9 +2,9 @@ package co.uniquindio.edu.model
 
 import java.sql.Date
 
-class PhysicalAssessment(var code:Int, var date:Date,var arms:Double, var legs:Double, var hips:Double, var height:Double, var weight:Double, var personalGoals:String, var trainer: Trainer) {
+class PhysicalAssessment(var code:Int, var date:Date,var arms:Double, var legs:Double, var hips:Double, var height:Double, var weight:Double, var personalGoals:String, var trainer: Trainer, var membership: Membership) {
 
-    constructor():this(0, Date.valueOf("2020-10-13"), 0.0, 0.0, 0.0, 0.0, 0.0, "", Trainer()){
+    constructor():this(0, Date.valueOf("2020-10-13"), 0.0, 0.0, 0.0, 0.0, 0.0, "", Trainer(), Membership()){
 
     }
     override fun equals(other: Any?): Boolean {
@@ -23,6 +23,6 @@ class PhysicalAssessment(var code:Int, var date:Date,var arms:Double, var legs:D
     }
 
     override fun toString(): String {
-        return "PhysicalAssessment(code=$code, date=$date, arms=$arms, legs=$legs, hips=$hips, height=$height, weight=$weight, personalGoals='$personalGoals', trainer=$trainer)"
+        return "PhysicalAssessment(code=$code, date=$date, arms=$arms, legs=$legs, hips=$hips, height=$height, weight=$weight, personalGoals='$personalGoals', trainer=$trainer, membership=$membership)"
     }
 }

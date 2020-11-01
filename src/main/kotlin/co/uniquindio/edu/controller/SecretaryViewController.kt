@@ -7,4 +7,6 @@ class SecretaryViewController {
 
     lateinit var secretary: Secretary
     @FXML lateinit var membersViewController: MembersViewController
+    @FXML lateinit var membershipsViewController: MembershipsViewController
+
 }

@@ -22,7 +22,7 @@ class LogginViewController {
     fun handleLoginButton(e:ActionEvent){
         if(isInputValid()){
             try {
-                var employee = adminEJB.login(userField.text, userField.text)
+                var employee = adminEJB.login(userField.text, passwordField.text)
                 InitViewController.showAlert("Bienvenido usuario ${employee.name}", "INFORMACIÓN", "", Alert.AlertType.INFORMATION)
                 if(employee is Secretary){
                     initViewController.loadSecretaryView(employee)

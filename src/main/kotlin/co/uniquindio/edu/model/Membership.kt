@@ -1,8 +1,8 @@
 package co.uniquindio.edu.model
 
-class Membership(var code:Int, var member: Member,  var secretary: Secretary, var physicalAssessment: PhysicalAssessment, var scholarship: Scholarship) {
+class Membership(var code:Int, var member: Member,  var secretary: Secretary, var scholarship: Scholarship) {
 
-    constructor():this(0, Member(),  Secretary(), PhysicalAssessment(),Scholarship.SCHOOL){
+    constructor():this(0, Member(),  Secretary(),Scholarship.SCHOOL){
 
     }
 
@@ -22,6 +22,6 @@ class Membership(var code:Int, var member: Member,  var secretary: Secretary, va
     }
 
     override fun toString(): String {
-        return "Membership(code=$code, member=$member, physicalAssessment=$physicalAssessment, scholarship=$scholarship)"
+        return "Membership(code=$code, member=$member, scholarship=$scholarship)"
     }
 }
