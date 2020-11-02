@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="700.0" prefWidth="600.0" spacing="15" stylesheets="@VBox.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.controller.MembersViewController">
+<VBox alignment="CENTER" prefHeight="700.0" prefWidth="600.0" spacing="15"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.controller.MembersViewController">
    <children>
       <GridPane VBox.vgrow="ALWAYS">
         <columnConstraints>
@@ -46,7 +46,7 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <TextField fx:id="telephoneField" prefHeight="26.0" prefWidth="262.0" promptText="Número de teléfono" />
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@VBox.css" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"  GridPane.columnIndex="1" GridPane.rowIndex="4">
                 <TextField fx:id="emailMemberField" prefHeight="26.0" prefWidth="262.0" promptText="Correo electrónico" />
             </HBox>
          </children>
