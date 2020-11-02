@@ -1,6 +1,7 @@
 package co.uniquindio.edu.business
 
 import co.uniquindio.edu.databaseConnection.Connection
+import co.uniquindio.edu.exceptions.BusinessException
 import co.uniquindio.edu.exceptions.EntityNullException
 import co.uniquindio.edu.exceptions.EntityRepeatedException
 import co.uniquindio.edu.model.*
@@ -404,7 +405,57 @@ class AdminEJB : AdminEJBRemote{
         }catch (e:SQLException){
             e.printStackTrace()
         }
+    }
+    @Throws(EntityNullException::class, BusinessException::class)
+    override fun addPhysicalAssessment(date: Date, arms: Double, legs: Double, hips: Double, height: Double, weight: Double, personalGoals: String, trainerCode: String, memberCode: String) {
+        connection?.getConnectionToDatabase()
+        val sql = "INSERT INTO PhysicalAssessment(date, arms, legs, hips, height, weight, personal_goals, code_trainer, code_membership) " +
+                "VALUES(?,?,?,?,?,?,?,?,?);"
+        try{
+            getTrainerByCode(trainerCode)
+            getMemberByCode(memberCode)
+            var membership = getLastMembershipByMemberCode(memberCode)
 
+            var payment:Payment? = getPaymentByMembershipCode(membership.code)
+                    ?: throw BusinessException("No se han registrado pagos referente a esta membresía")
+
+            try{
+                var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
+                statement?.setDate(1, date)
+                statement?.setDouble(2, arms)
+                statement?.setDouble(3, legs)
+                statement?.setDouble(4, hips)
+                statement?.setDouble(5, height)
+                statement?.setDouble(6, weight)
+                statement?.setString(7, personalGoals)
+                statement?.setString(8, trainerCode)
+                statement?.setInt(9,membership.code)
+                val result = statement?.executeUpdate()
+
+                println("rows modified: ${result}")
+            }catch (e:SQLException){
+                e.printStackTrace()
+            }
+        }catch (e:EntityNullException){
+            throw EntityNullException("El miembro o el entrenador no se encuentran registrados")
+        }
+
+    }
+
+    fun getLastMembershipByMemberCode(memberCode:String): Membership{
+        connection?.getConnectionToDatabase()
+        val sql = "SELECT code FROM Membership WHERE code_member = \'$memberCode\' ORDER BY code DESC;"
+        var results = ArrayList<Membership>()
+        try{
+            var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
+            val resultSet:ResultSet? = statement?.executeQuery()
+            while(resultSet?.next()==true){
+                results.add(getMembershipByCode(resultSet?.getInt(1)))
+            }
+        }catch (e:SQLException){
+            e.printStackTrace()
+        }
+        return results[0]
     }
 
     override fun updateDatePhysicalAssessment(code: Int, date: Date) {
@@ -432,7 +483,7 @@ class AdminEJB : AdminEJBRemote{
         }
     }
 
-    override fun getAllPhysicalAssessment(code: Int):ArrayList<PhysicalAssessment> {
+    override fun getAllPhysicalAssessment():ArrayList<PhysicalAssessment> {
         connection?.getConnectionToDatabase()
         var results:ArrayList<PhysicalAssessment> = ArrayList()
         val sql = "SELECT * FROM PhysicalAssessment;"
@@ -456,6 +507,7 @@ class AdminEJB : AdminEJBRemote{
         }
         return results
     }
+
     @Throws(EntityNullException::class)
     override fun getMemberByCode(code: String): Member {
         connection?.getConnectionToDatabase()
@@ -598,6 +650,7 @@ class AdminEJB : AdminEJBRemote{
         return paymentType
     }
 
+
     override fun getTrainerByCode(code: String): Trainer {
         connection?.getConnectionToDatabase()
         var trainer:Trainer = Trainer()
@@ -678,5 +731,28 @@ class AdminEJB : AdminEJBRemote{
             e.printStackTrace()
         }
         return results
+    }
+    fun getPaymentByMembershipCode(membershipCode: Int): Payment?{
+        connection?.getConnectionToDatabase()
+        var results:ArrayList<Payment> = ArrayList()
+        val sql = "SELECT * FROM Payment WHERE code_membership = \'$membershipCode\';"
+        try{
+            var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
+            val resultSet:ResultSet? = statement?.executeQuery()
+            while(resultSet?.next()==true){
+                results.add(Payment(resultSet?.getInt(1),
+                        resultSet?.getDate(2),
+                        resultSet?.getDouble(3),
+                        getMemberByCode(resultSet?.getString(4)),
+                        getMembershipByCode(resultSet?.getInt(5)),
+                        getPaymenTypeByCode(resultSet?.getInt(6))))
+            }
+        }catch (e:SQLException){
+            e.printStackTrace()
+        }
+        if(results.size == 0){
+            return null
+        }
+        return results[0]
     }
 }

@@ -36,9 +36,20 @@ interface AdminEJBRemote {
             trainerCode: String,
             membershipCode: Int
     )
+    fun addPhysicalAssessment(
+            date: Date,
+            arms: Double,
+            legs: Double,
+            hips: Double,
+            height: Double,
+            weight: Double,
+            personalGoals: String,
+            trainerCode: String,
+            memberCode: String
+    )
     fun updateDatePhysicalAssessment(code:Int, date:Date)
     fun removePhysicalAssessment(code:Int)
-    fun getAllPhysicalAssessment(code:Int):ArrayList<PhysicalAssessment>
+    fun getAllPhysicalAssessment():ArrayList<PhysicalAssessment>
 
     fun getMemberByCode(code:String):Member
     fun getSecretaryByCode(code:String):Secretary

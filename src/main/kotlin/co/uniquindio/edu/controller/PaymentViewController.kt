@@ -116,7 +116,6 @@ class PaymentViewController {
             paymentTableView.items.add(PaymentObservable(element.code.toString(), element.date.toString(),element.total.toString(),
                     element.member.code, element.membership.code.toString(), element.paymentType.toString()))
         }
-        println(paymentTableView.items)
         paymentTableView.refresh()
     }
     fun fillTableViewByMemberCode(){

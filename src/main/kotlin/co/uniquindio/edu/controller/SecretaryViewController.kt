@@ -9,4 +9,5 @@ class SecretaryViewController {
     @FXML lateinit var membersViewController: MembersViewController
     @FXML lateinit var membershipsViewController: MembershipsViewController
     @FXML lateinit var paymentViewController: PaymentViewController
+    @FXML lateinit var assignAppointmentViewController: AssignAppointmentViewController
 }

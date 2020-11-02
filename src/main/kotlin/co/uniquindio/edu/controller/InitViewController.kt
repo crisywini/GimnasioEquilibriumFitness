@@ -39,6 +39,7 @@ class InitViewController {
             controller.membershipsViewController.initScholarshipComboBox()
             controller.paymentViewController.initComboBox()
             controller.paymentViewController.initTableView()
+            controller.assignAppointmentViewController.initTableView()
 
             rootPane.center=parent
         }catch (e:Exception){
