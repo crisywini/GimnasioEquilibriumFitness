@@ -55,6 +55,8 @@ class InitViewController {
             controller.trainer = trainer
             controller.physicalAssessmentTodayViewController.trainer = trainer
             controller.physicalAssessmentTodayViewController.initTableView()
+            controller.physicalAssessmentViewController.trainer = trainer
+            controller.physicalAssessmentViewController.initTableView()
 
             rootPane.center=parent
         }catch (e:Exception){

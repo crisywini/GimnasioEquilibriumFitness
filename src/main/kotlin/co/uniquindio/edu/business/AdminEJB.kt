@@ -527,6 +527,26 @@ class AdminEJB : AdminEJBRemote{
 
     }
 
+    override fun updatePhysicalAssessment(code: Int, height: Double, weight: Double, arms: Double, legs: Double, hips: Double, personalGoals: String, codeTrainer: String, date: Date) {
+        connection?.getConnectionToDatabase()
+        val sql = "UPDATE PhysicalAssessment SET height = ?, weight = ?, arms = ?, legs = ?, hips = ?, personal_goals = ?, code_trainer = \'$codeTrainer\', date = ? WHERE code = \'$code\'; "
+        try{
+            var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
+            statement?.setDouble(1,height)
+            statement?.setDouble(2,weight)
+            statement?.setDouble(3,arms)
+            statement?.setDouble(4,legs)
+            statement?.setDouble(5,hips)
+            statement?.setString(6,personalGoals)
+            statement?.setDate(7,date)
+
+            val result = statement?.executeUpdate()
+            println("rows modified: ${result}")
+        }catch (e:SQLException){
+            e.printStackTrace()
+        }
+    }
+
     @Throws(EntityNullException::class)
     override fun getMemberByCode(code: String): Member {
         connection?.getConnectionToDatabase()

@@ -10,5 +10,6 @@ import java.lang.Exception
 
 class TrainerViewController {
     @FXML lateinit var physicalAssessmentTodayViewController: PhysicalAssessmentTodayViewController
+    @FXML lateinit var physicalAssessmentViewController: PhysicalAssessmentViewController
     lateinit var trainer: Trainer
 }

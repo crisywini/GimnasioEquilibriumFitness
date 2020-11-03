@@ -23,7 +23,7 @@
                             <Tab text="Membresías">
                                 <content>
                                     <VBox alignment="CENTER" prefHeight="180.0" prefWidth="200.0">
-
+                                        <fx:include fx:id="physicalAssessmentView" source="PhysicalAssessmentView.fxml"/>
                                     </VBox>
                                 </content>
                             </Tab>
