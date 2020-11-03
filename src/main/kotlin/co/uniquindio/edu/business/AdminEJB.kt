@@ -9,7 +9,6 @@ import java.sql.Date
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
-import javax.swing.text.html.parser.Entity
 import kotlin.jvm.Throws
 
 class AdminEJB : AdminEJBRemote{
@@ -508,6 +507,26 @@ class AdminEJB : AdminEJBRemote{
         return results
     }
 
+    override fun updatePhysicalAssessment(code: Int, height: Double, weight: Double, arms: Double, legs: Double, hips: Double, personalGoals: String, codeTrainer:String) {
+
+        connection?.getConnectionToDatabase()
+        val sql = "UPDATE PhysicalAssessment SET height = ?, weight = ?, arms = ?, legs = ?, hips = ?, personal_goals = ?, code_trainer = \'$codeTrainer\' WHERE code = \'$code\'; "
+        try{
+            var statement: PreparedStatement? = connection?.connection?.prepareStatement(sql)
+            statement?.setDouble(1,height)
+            statement?.setDouble(2,weight)
+            statement?.setDouble(3,arms)
+            statement?.setDouble(4,legs)
+            statement?.setDouble(5,hips)
+            statement?.setString(6,personalGoals)
+            val result = statement?.executeUpdate()
+            println("rows modified: ${result}")
+        }catch (e:SQLException){
+            e.printStackTrace()
+        }
+
+    }
+
     @Throws(EntityNullException::class)
     override fun getMemberByCode(code: String): Member {
         connection?.getConnectionToDatabase()
@@ -550,7 +569,7 @@ class AdminEJB : AdminEJBRemote{
         return secretary
     }
 
-    override fun getPhysicallAssesement(code: Int): PhysicalAssessment {
+    override fun getPhysicalAssessment(code: Int): PhysicalAssessment {
         connection?.getConnectionToDatabase()
         var physicalAssessment:PhysicalAssessment = PhysicalAssessment()
 
@@ -626,7 +645,7 @@ class AdminEJB : AdminEJBRemote{
         return membership
     }
 
-    override fun getPaymenTypeByCode(code: Int): PaymentType {
+    override fun getPaymentTypeByCode(code: Int): PaymentType {
         connection?.getConnectionToDatabase()
         var paymentType:PaymentType = PaymentType.NONE
 
@@ -704,7 +723,7 @@ class AdminEJB : AdminEJBRemote{
                         resultSet?.getDouble(3),
                         getMemberByCode(resultSet?.getString(4)),
                         getMembershipByCode(resultSet?.getInt(5)),
-                        getPaymenTypeByCode(resultSet?.getInt(6))))
+                        getPaymentTypeByCode(resultSet?.getInt(6))))
             }
         }catch (e:SQLException){
             e.printStackTrace()
@@ -725,7 +744,7 @@ class AdminEJB : AdminEJBRemote{
                         resultSet?.getDouble(3),
                         getMemberByCode(resultSet?.getString(4)),
                         getMembershipByCode(resultSet?.getInt(5)),
-                        getPaymenTypeByCode(resultSet?.getInt(6))))
+                        getPaymentTypeByCode(resultSet?.getInt(6))))
             }
         }catch (e:SQLException){
             e.printStackTrace()
@@ -745,7 +764,7 @@ class AdminEJB : AdminEJBRemote{
                         resultSet?.getDouble(3),
                         getMemberByCode(resultSet?.getString(4)),
                         getMembershipByCode(resultSet?.getInt(5)),
-                        getPaymenTypeByCode(resultSet?.getInt(6))))
+                        getPaymentTypeByCode(resultSet?.getInt(6))))
             }
         }catch (e:SQLException){
             e.printStackTrace()

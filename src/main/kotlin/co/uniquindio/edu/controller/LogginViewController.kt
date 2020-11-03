@@ -27,7 +27,7 @@ class LogginViewController {
                 if(employee is Secretary){
                     initViewController.loadSecretaryView(employee)
                 }else if(employee is Trainer){
-
+                    initViewController.loadTrainerView(employee)
                 }
             }catch (e:EntityNullException){
                 InitViewController.showAlert(e.message.toString(), "ERROR", "", Alert.AlertType.ERROR)

@@ -50,13 +50,14 @@ interface AdminEJBRemote {
     fun updateDatePhysicalAssessment(code:Int, date:Date)
     fun removePhysicalAssessment(code:Int)
     fun getAllPhysicalAssessment():ArrayList<PhysicalAssessment>
+    fun updatePhysicalAssessment(code:Int, height: Double, weight: Double, arms: Double, legs: Double, hips: Double, personalGoals: String, codeTrainer:String)
 
     fun getMemberByCode(code:String):Member
     fun getSecretaryByCode(code:String):Secretary
-    fun getPhysicallAssesement(code:Int):PhysicalAssessment
+    fun getPhysicalAssessment(code:Int):PhysicalAssessment
     fun getScholarshipByCode(code:Int):Scholarship
     fun getMembershipByCode(code:Int):Membership
-    fun getPaymenTypeByCode(code:Int):PaymentType
+    fun getPaymentTypeByCode(code:Int):PaymentType
     fun getTrainerByCode(code:String):Trainer
 
     fun getMembershipsByMemberCode(memberCode:String):ArrayList<Membership>

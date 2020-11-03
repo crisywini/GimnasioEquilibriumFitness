@@ -3,6 +3,7 @@ package co.uniquindio.edu.controller
 import co.uniquindio.edu.AppGEF
 import co.uniquindio.edu.databaseConnection.DatabaseUtil
 import co.uniquindio.edu.model.Secretary
+import co.uniquindio.edu.model.Trainer
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
@@ -40,6 +41,20 @@ class InitViewController {
             controller.paymentViewController.initComboBox()
             controller.paymentViewController.initTableView()
             controller.assignAppointmentViewController.initTableView()
+
+            rootPane.center=parent
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+    }
+    fun loadTrainerView(trainer: Trainer){
+        try {
+            val loader = FXMLLoader(AppGEF::class.java.getResource("/TrainerView.fxml"))
+            val parent: Parent = loader.load()
+            val controller: TrainerViewController = loader.getController()
+            controller.trainer = trainer
+            controller.physicalAssessmentTodayViewController.trainer = trainer
+            controller.physicalAssessmentTodayViewController.initTableView()
 
             rootPane.center=parent
         }catch (e:Exception){

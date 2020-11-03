@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="600.0" spacing="20" stylesheets="@VBox2.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.controller.TrainerViewController">
+    <children>
+
+        <HBox alignment="CENTER" prefHeight="571.0" prefWidth="600.0" stylesheets="@TabPane.css" VBox.vgrow="ALWAYS">
+            <Pane prefHeight="571.0" prefWidth="87.0" />
+
+            <VBox alignment="CENTER" opacity="0.77" prefHeight="571.0" prefWidth="615.0" style="-fx-background-radius: 20px;" HBox.hgrow="ALWAYS">
+                <children>
+                    <TabPane prefHeight="573.0" prefWidth="572.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                        <tabs>
+                            <Tab text="Membresías Hoy">
+                                <content>
+                                    <VBox alignment="CENTER" prefHeight="538.0" prefWidth="580.0">
+                                        <fx:include fx:id="physicalAssessmentTodayView" source="PhysicalAssessmentTodayView.fxml" />
+                                    </VBox>
+                                </content>
+                            </Tab>
+                            <Tab text="Membresías">
+                                <content>
+                                    <VBox alignment="CENTER" prefHeight="180.0" prefWidth="200.0">
+
+                                    </VBox>
+                                </content>
+                            </Tab>
+
+                        </tabs>
+                    </TabPane>
+                </children></VBox>
+            <Pane prefHeight="571.0" prefWidth="87.0" />
+
+        </HBox>
+    </children>
+</VBox>
