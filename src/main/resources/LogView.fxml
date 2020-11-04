@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="600.0" spacing="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.edu.controller.LogViewController">
+
+    <children>
+        <HBox alignment="CENTER" prefHeight="564.0" prefWidth="600.0">
+            
+            <VBox alignment="TOP_CENTER" opacity="0.77" prefHeight="557.0" prefWidth="565.0" spacing="15.0" style="-fx-background-color: #f53630; -fx-background-radius: 20px;">
+                <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="518.0">
+               <Pane prefHeight="51.0" prefWidth="16.0" />
+                    <Button onAction="#handleBackButton" style="-fx-background-radius: 20px; -fx-background-color: #b62525; -fx-text-fill: white;" text="&lt;" />
+                </HBox>
+                <HBox alignment="CENTER">
+                    <Label style="-fx-text-fill: white;" text="Datos personales" />
+                </HBox>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label style="-fx-text-fill: white;" text="Cédula" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <Label style="-fx-text-fill: white;" text="Nombre" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                     <children>
+                        <Label style="-fx-text-fill: white;" text="Apellido" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                     <children>
+                        <Label style="-fx-text-fill: white;" text="Correo electrónico" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+                     <children>
+                        <Label style="-fx-text-fill: white;" text="Número Celular" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
+                     <children>
+                        <Label style="-fx-text-fill: white;" text="Contraseña" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
+                     <children>
+                        <Label style="-fx-text-fill: white;" text="Repetir Contraseña" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <TextField fx:id="codeField" promptText="Cédula" style="-fx-background-radius: 20px; -fx-background-color: #b62525;" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <TextField fx:id="nameField" promptText="Nombre" style="-fx-background-radius: 20px; -fx-background-color: #b62525;" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <TextField fx:id="lastNameField" promptText="Apellido" style="-fx-background-radius: 20px; -fx-background-color: #b62525;" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <TextField fx:id="emailField" promptText="Correo electrónico" style="-fx-background-radius: 20px; -fx-background-color: #b62525;" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <children>
+                        <TextField fx:id="telephoneField" promptText="Número celular" style="-fx-background-radius: 20px; -fx-background-color: #b62525;" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <children>
+                        <PasswordField fx:id="passwordField" promptText="Contraseña" style="-fx-background-radius: 20px; -fx-background-color: #b62525;" />
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <children>
+                        <PasswordField fx:id="passwordField2" promptText="Repite la contraseña" style="-fx-background-radius: 20px; -fx-background-color: #b62525;" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
+                        <Label style="-fx-text-fill: white;" text="Cargo" />
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <ComboBox fx:id="comboBox" prefHeight="26.0" prefWidth="171.0" promptText="Elija su cargo" style="-fx-background-radius: 20px; -fx-background-color: #b62525; -fx-text-fill: white;" />
+                  </HBox>
+               </children>
+            </GridPane>
+            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="565.0" spacing="10">
+               <children>
+                  <Button onAction="#handleAddButton" style="-fx-background-radius: 20px; -fx-background-color: #b62525; -fx-text-fill: white;" text="Agregar" />
+                   <Button onAction="#handleRemoveButton" style="-fx-background-radius: 20px; -fx-background-color: #b62525; -fx-text-fill: white;" text="Eliminar" />
+                   <Button onAction="#handleUpdateButton" style="-fx-background-radius: 20px; -fx-background-color: #b62525; -fx-text-fill: white;" text="Actualizar" />
+               </children>
+            </HBox>
+            <TableView prefHeight="216.0" prefWidth="565.0" style="-fx-background-radius: 20px; -fx-background-color: #b62525; -fx-text-fill: white;">
+              <columns>
+                <TableColumn prefWidth="75.0" style="-fx-background-color: #b62525; -fx-text-fill: white;" text="Cédula" />
+                <TableColumn prefWidth="75.0" style="-fx-background-color: #b62525; -fx-text-fill: white;" text="Nombre" />
+                  <TableColumn prefWidth="75.0" style="-fx-background-color: #b62525; -fx-text-fill: white;" text="Apellido" />
+                  <TableColumn prefWidth="75.0" style="-fx-background-color: #b62525; -fx-text-fill: white;" text="Correo" />
+                  <TableColumn prefWidth="75.0" style="-fx-background-color: #b62525; -fx-text-fill: white;" text="Celular" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            </VBox>
+        </HBox>
+    </children>
+</VBox>
